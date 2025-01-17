@@ -1,0 +1,71 @@
+<div class="container">
+  <h1>Search movies</h1>
+  <form id="search_form">
+    <div class="row py-lg-5">
+      <div class="col-8">
+        <input type="search" id="search" class="form-control" value="">
+      </div>
+      <div class="col-2">
+        <input type="number" id="year" class="form-control">
+      </div>
+      <div class="col-2">
+        <button type="submit" class="btn btn-info" id="search_btn">Search</button>
+      </div>
+    </div>
+  </form>
+  <div class="album py-3 bg-light">
+    <div id="movies_wrap" class="container row d-flex justify-content-center"></div>
+  </div>
+
+</div>
+
+<script>
+  const cacheMovies = JSON.parse(localStorage.getItem("movies")) || []
+  showMovies(cacheMovies)
+
+  const form = getEl("search_form")
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const search = getEl("search").value
+    const year = getEl("year").value
+
+    if (search == '') return
+
+    searchMovies(search, year)
+
+  })
+
+  async function searchMovies(search, year) {
+    loader.show()
+    let url = `http://www.omdbapi.com/?apikey=${CONFIG.API_KEY}&s=${search}`;
+    if (year !== '') {
+      url += '&y=' + year;
+    }
+    const response = await fetch(url)
+    const movies = await response.json()
+
+    showMovies(movies.Search)
+
+    // кешування результатів пошуку
+    localStorage.setItem('movies', JSON.stringify(movies.Search))
+    loader.hide()
+  }
+
+  function showMovies(list){
+    let moviesHTML = ''
+    list.forEach(item => {
+      moviesHTML += `
+        <div class="col-lg-3 col-md-6">
+          <div class="card">
+            <img src="${item.Poster}" class="card-img-top" alt="${item.Title}">
+            <div class="card-body">
+                <h5 class="card-title">${item.Title}</h5>
+                <p class="card-text">${item.Year}</p>
+            </div>
+          </div>
+        </div>
+      `
+    })
+    getEl('movies_wrap').innerHTML = moviesHTML
+  }
+</script>
