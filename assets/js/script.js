@@ -59,22 +59,22 @@ async function loadPage(path) {
   const html = await response.text()
 
   window.main_content.innerHTML = html
-  window.main_content.querySelectorAll('script').forEach(scr => {
-    if ( scr.innerHTML ) eval(scr.innerHTML)
-    if ( scr.getAttribute("src")) {
+  window.main_content.querySelectorAll('script').forEach(scriptEl => {
+    if ( scriptEl.innerHTML ) eval(scriptEl.innerHTML)
+    if ( scriptEl.getAttribute("src")) {
       const script = document.createElement('script')
-      script.setAttribute("src", scr.getAttribute("src"))
+      script.setAttribute("src", scriptEl.getAttribute("src"))
       window.main_content.after(script)
     }
   })
 
   // const main_content = document.getElementById("main_content")
   // main_content.innerHTML = html
-  // main_content.querySelectorAll('script').forEach(scr => {
-  //   if ( scr.innerHTML ) eval(scr.innerHTML)
-  //   if ( scr.getAttribute("src")) {
+  // main_content.querySelectorAll('script').forEach(scriptEl => {
+  //   if ( scriptEl.innerHTML ) eval(scriptEl.innerHTML)
+  //   if ( scriptEl.getAttribute("src")) {
   //     const script = document.createElement('script')
-  //     script.setAttribute("src", scr.getAttribute("src"))
+  //     script.setAttribute("src", scriptEl.getAttribute("src"))
   //     main_content.after(script)
   //   }
   // })
