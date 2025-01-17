@@ -37,7 +37,7 @@
 
   async function searchMovies(search, year) {
     loader.show()
-    let url = `http://www.omdbapi.com/?apikey=${CONFIG.API_KEY}&s=${search}`;
+    let url = `https://www.omdbapi.com/?apikey=${CONFIG.API_KEY}&s=${search}`;
     if (year !== '') {
       url += '&y=' + year;
     }

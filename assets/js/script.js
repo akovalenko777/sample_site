@@ -11,7 +11,6 @@ import * as CONFIG from "./config.js"
   // helperFunction2()
   console.log(CONFIG.API_KEY);
 
-
   // слухаємо зміну теми
   theme.listen()
   // перевіряємо чи записаний користувацький вибір теми
@@ -36,6 +35,10 @@ import * as CONFIG from "./config.js"
 // альтернативний варіант, більш скорочений, але не дає можливості додати ще один обробник на цю саму подію
 // таймаут доданий для емуляції часу відповіді від сервера
 // window.onload = event => loader.hide(1000)
+
+document.addEventListener('keydown', (e) => {
+  console.log('Keydown event', e)
+})
 
 document.addEventListener('click', (e) => {
   console.log('Click event', e)
@@ -89,7 +92,8 @@ function loadPage2(path) {
   fetch(path)
     .then(resp => resp.text())
     .then(html => {
-      window.main_content.innerHTML = html
+      //window.main_content.innerHTML = html
+      $("#main_content").html(html)
       loader.hide(200)    
     })
 }

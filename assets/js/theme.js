@@ -1,7 +1,8 @@
 export default {
     isDarkMode(){
         // намагаємося отримати з браузера чи використовується темна тема
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches   
+        // return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches   
+        return window.matchMedia?.('(prefers-color-scheme: dark)').matches   
     },
     listen(){
         // прослуховування події зміни теми в налаштуваннях браузера
@@ -12,8 +13,9 @@ export default {
     },
     switch(newColorScheme){
         // встановлення обраної користувацької теми
-        newColorScheme === 'dark'
-            ? document.documentElement.classList.add("dark")
-            : document.documentElement.classList.remove("dark")
+        // newColorScheme === 'dark'
+        //     ? document.documentElement.classList.add("dark")
+        //     : document.documentElement.classList.remove("dark")
+        document.documentElement.classList.toggle('dark', newColorScheme === 'dark')
     }
 }
