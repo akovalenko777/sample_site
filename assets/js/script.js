@@ -1,5 +1,6 @@
 import loader from "./loader.js";
 import theme from "./theme.js";
+import pageScrollBar from "./page_scroll_bar.js"
 // можна імпортувати тільки те, що потрібно
 import { helperFunction1, getEl, getCookie, setCookie } from "./helpers.js";
 
@@ -25,6 +26,9 @@ import * as CONFIG from "./config.js"
   document.documentElement.classList.contains('dark') && (window.colorSchemeSwitcher.checked = true)
 
   loadPage2('/pages/main.html')
+
+  // викликаємо ініціалізацію прогрес бара для скрола сторінки
+  pageScrollBar.init()
 })()
 
 // чекаємо поки завантажаться усі необхідні ресурси і тільки потім ховаємо лоадер
@@ -83,6 +87,10 @@ async function loadPage(path) {
   // })
 
   // $("#main_content").html(html);
+
+  // щоб нова завантажена сторінка показувалась зверху - скидаємо можливий скролл
+  window.scrollTo(0, 0)
+
   loader.hide(200)
 }
 

@@ -38,6 +38,43 @@
   }
 }
 
+/* page progress bar*/
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+main {
+  margin-top: 59px;
+}
+
+:root {
+  --barWidth: 100;
+}
+
+.page_progress {
+  --size: 5px;
+  
+  position: absolute;
+  left: 0;
+  bottom: var(--size) * -1;
+  height: var(--size);
+  width: 100%;
+  background: linear-gradient(to right, red, green, blue) ;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: calc(var(--barWidth) * 1%);
+    background-color: #eee;
+  }
+}
+
 /* @media (prefers-color-scheme: dark) { */
 .dark {
   #loader {
