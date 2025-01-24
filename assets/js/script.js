@@ -65,15 +65,15 @@ async function loadPage(path) {
   const response = await fetch(path)
   const html = await response.text()
 
-  window.main_content.innerHTML = html
-  window.main_content.querySelectorAll('script').forEach(scriptEl => {
-    if ( scriptEl.innerHTML ) eval(scriptEl.innerHTML)
-    if ( scriptEl.getAttribute("src")) {
-      const script = document.createElement('script')
-      script.setAttribute("src", scriptEl.getAttribute("src"))
-      window.main_content.after(script)
-    }
-  })
+  // window.main_content.innerHTML = html
+  // window.main_content.querySelectorAll('script').forEach(scriptEl => {
+  //   if ( scriptEl.innerHTML ) eval(scriptEl.innerHTML)
+  //   if ( scriptEl.getAttribute("src")) {
+  //     const script = document.createElement('script')
+  //     script.setAttribute("src", scriptEl.getAttribute("src"))
+  //     window.main_content.after(script)
+  //   }
+  // })
 
   // const main_content = document.getElementById("main_content")
   // main_content.innerHTML = html
@@ -86,7 +86,7 @@ async function loadPage(path) {
   //   }
   // })
 
-  // $("#main_content").html(html);
+  $("#main_content").html(html);
 
   // щоб нова завантажена сторінка показувалась зверху - скидаємо можливий скролл
   window.scrollTo(0, 0)

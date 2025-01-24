@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="assets/plugins/leaflet/leaflet.css">
+<style>
+.map-container {
+  height: 400px;
+  
+}
+/* .initMap {
+  position: relative;
+  &::before {
+    content: 'Click to interactive map';
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    width: 100%;
+    height: 400px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: rgba(0,0,0,.3);
+    z-index: 100;
+    opacity: 0;
+  }
+} */
+</style>
+<div class="container">
+  <h1>Map examples</h1>
+  
+  <div class="card mb-4">
+    <div class="card-header">Simple map</div>
+    <div class="card-body">
+      <div id="map_1" class="map-container">
+        <a href="javascript:void(0)" class="initMap">
+          <img src="assets/images/map-test.png" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  
+
+</div>
+
+
+<script src="assets/plugins/leaflet/leaflet.js" defer></script>
+<script>
+const myIcon = L.icon({
+    iconUrl: 'assets/plugins/leaflet/images/marker-icon.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 43],
+    popupAnchor: [1, -43],
+    shadowUrl: 'assets/plugins/leaflet/images/marker-shadow.png',
+    shadowSize: [41, 41],
+    shadowAnchor: [12, 43]
+});
+
+$(".initMap").click(()=>{
+  $("#map_1").html('')
+  initMap()
+})
+
+function initMap(){
+  const map = L.map('map_1').setView([46.97103383118516, 31.96630788882693], 16);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+  }).addTo(map);
+
+  L.marker([46.97103383118516, 31.96630788882693], {icon: myIcon}).addTo(map).bindPopup('I`m here!')
+}
+</script>
+
+<!--
+https://leafletjs.com/
+
+https://wiki.openstreetmap.org/wiki/Raster_tile_providers
+
+
+https://angel-rs.github.io/css-color-filter-generator/
+https://cssgenerator.org/filter-css-generator.html
+-->

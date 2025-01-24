@@ -3,8 +3,6 @@ export default {
   init(){
     const header = document.querySelector('header')
     if (!header) return console.error('Not found header in page markup')
-    
-    console.log(header.style.position)
     this.barElement = document.createElement('div')
     this.barElement.className = 'page_progress'
     header.append(this.barElement)
